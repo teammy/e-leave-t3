@@ -1,5 +1,6 @@
 import Login from "~/features/auth/components/Login";
-import { NextPageWithLayout } from "~/types";
+import {type NextPageWithLayout } from "../_app";
+import Layout from "~/features/ui/components/layouts/Normal";
 
 const LoginPage: NextPageWithLayout = () => {
   return <Login></Login>;

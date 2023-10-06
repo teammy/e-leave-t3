@@ -7,15 +7,6 @@ await import("./src/env.mjs");
 /** @type {import("next").NextConfig} */
 const config = {
   reactStrictMode: true,
-  async redirects() {
-    return [
-      {
-        source: "/",
-        destination: "/home",
-        permanent: true,
-      },
-    ];
-  },
   /**
    * If you are using `appDir` then you must comment the below `i18n` config out.
    *
@@ -25,6 +16,15 @@ const config = {
     locales: ["en"],
     defaultLocale: "en",
   },
+  async redirects() {
+    return [
+      {
+        source: "/",
+        destination: "/en",
+        permanent: true,
+      },
+    ];
+  }
 };
 
 export default config;

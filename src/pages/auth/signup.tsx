@@ -1,5 +1,6 @@
 import Register from "~/features/auth/components/Register";
-import { NextPageWithLayout } from "~/types";
+import {type NextPageWithLayout } from "../_app";
+import Layout from "~/features/ui/components/layouts/Normal";
 
 const RegisterPage: NextPageWithLayout = () => {
   return <Register></Register>;
