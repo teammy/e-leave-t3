@@ -3,6 +3,8 @@ import { SessionProvider } from "next-auth/react";
 import { type ReactElement, type ReactNode } from "react";
 import { type NextPage } from "next";
 import { type AppProps } from "next/app";
+import {NextUIProvider} from '@nextui-org/react'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 import { api } from "~/utils/api";
 
@@ -26,7 +28,10 @@ const MyApp = ({
   return (
     <SessionProvider session={session}>
       <Layout>
+        <NextUIProvider>
         <Component {...pageProps} />
+        <ReactQueryDevtools initialIsOpen={false} />
+        </NextUIProvider>
       </Layout>
     </SessionProvider>
   );

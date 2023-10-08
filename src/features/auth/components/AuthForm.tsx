@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as validators from "../helpers/validators";
 import { capitalize } from "lodash";
 import FormField from "~/features/ui/components/form/FormField";
-
+import Link from "next/link";
 
 export type AuthFormProps =
   | {
@@ -37,28 +37,39 @@ const AuthForm = ({ kind, onSubmit }: AuthFormProps) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <h2>{capitalize(kind)}</h2>
-      {
-        isRegisterForm && (
-         <FormField
-         id='name'
-         label='Name'
-         placeholder='Enter Your Name'
-         error={errors.name?.message}
-          {...register('name')}
-         >
-         </FormField>
+      {isRegisterForm && (
+        <FormField
+          id="name"
+          label="Name"
+          placeholder="Enter Your Name"
+          error={errors.name?.message}
+          {...register("name")}
+        ></FormField>
       )}
+      <FormField
+        id="email"
+        label="Email"
+        type="email"
+        placeholder="Enter Your Email"
+        error={errors.email?.message}
+        {...register("email")}
+      ></FormField>
+      <FormField
+        id="password"
+        label="Password"
+        type="password"
+        placeholder="Enter Your password"
+        error={errors.password?.message}
+        {...register("password")}
+      ></FormField>
       <div>
-            <label htmlFor="email">email</label>
-            <input type="email" id="email" placeholder="Enter Your email" {...register('email')} />
-            {errors.email && <div>{errors.email.message}</div>}
-          </div>
-          <div>
-            <label htmlFor="password">password</label>
-            <input type="password" id="password" placeholder="Enter Your password" {...register('password')} />
-            {errors.password && <div>{errors.password.message}</div>}
-          </div>
-          <div><button type="submit" >{kind}</button></div>
+        <button type="submit">{kind}</button>
+        <Link href={isRegisterForm ? "/auth/signin" : "/auth/signup"}>
+          {isRegisterForm
+            ? "Already have an account? Sign in"
+            : "Need an account? Sign up"}
+        </Link>
+      </div>
     </form>
   );
 };
